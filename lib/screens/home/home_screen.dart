@@ -153,9 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 24,
             ),
             const SizedBox(width: 8),
-            const Text(
-              'Lỗi phát nhạc',
-              style: TextStyle(
+            Text(
+              context.l10n.musicPlayerError,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -442,9 +442,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Playlists',
-                          style: TextStyle(
+                        Text(
+                          context.l10n.playlistsTitle,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -480,8 +480,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         // "Create" card
                         if (playlists.isEmpty) {
                           return _PlaylistCard(
-                            title: 'Tạo mới',
-                            subtitle: 'Playlist',
+                            title: context.l10n.createNewLabel,
+                            subtitle: context.l10n.playlistTitle,
                             leadingIcon: Icons.add_rounded,
                             onTap: () {
                               Navigator.push(
@@ -501,7 +501,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         final p = playlists[index];
                         return _PlaylistCard(
                           title: p.name,
-                          subtitle: '${p.songs.length} bài',
+                          subtitle: context.l10n.songsCount(p.songs.length),
                           coverSongs: p.songs,
                           onTap: () {
                             Navigator.push(
@@ -548,7 +548,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return _buildSongList(
             state.songs,
             headerText: '🔍 ${context.l10n.homeSearchHint}',
-            emptyMessage: 'Không tìm thấy bài hát.',
+            emptyMessage: context.l10n.searchNotFound,
           );
         }
 

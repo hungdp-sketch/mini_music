@@ -6,6 +6,7 @@ import '../../core/theme.dart';
 import '../../models/playlist_model.dart';
 import '../../widgets/playlist_cover_stack.dart';
 import 'playlist_detail_screen.dart';
+import '../../core/app_localizations.dart';
 
 class PlaylistListScreen extends StatelessWidget {
   const PlaylistListScreen({super.key});
@@ -17,7 +18,7 @@ class PlaylistListScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppTheme.backgroundColor,
         elevation: 0,
-        title: const Text('Playlists'),
+        title: Text(context.l10n.playlistsTitle),
         centerTitle: true,
         actions: [
           IconButton(
@@ -62,7 +63,7 @@ class PlaylistListScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'Chưa có playlist nào.',
+                      context.l10n.noPlaylistsMessage,
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.55),
                       ),
@@ -77,7 +78,7 @@ class PlaylistListScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text('Tạo playlist'),
+                      child: Text(context.l10n.createPlaylistTitle),
                     ),
                   ],
                 ),
@@ -123,16 +124,16 @@ class PlaylistListScreen extends StatelessWidget {
       builder: (context) => AlertDialog(
         backgroundColor: AppTheme.cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: const Text(
-          'Tạo playlist',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          context.l10n.createPlaylistTitle,
+          style: const TextStyle(color: Colors.white),
         ),
         content: TextField(
           controller: controller,
           autofocus: true,
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            hintText: 'Tên playlist',
+            hintText: context.l10n.playlistNameHint,
             hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.4)),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
@@ -147,13 +148,13 @@ class PlaylistListScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy', style: TextStyle(color: Colors.white70)),
+            child: Text(context.l10n.cancelButton, style: const TextStyle(color: Colors.white70)),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text(
-              'Tạo',
-              style: TextStyle(
+            child: Text(
+              context.l10n.createButton,
+              style: const TextStyle(
                 color: AppTheme.primaryColor,
                 fontWeight: FontWeight.bold,
               ),
@@ -177,16 +178,16 @@ class PlaylistListScreen extends StatelessWidget {
       builder: (context) => AlertDialog(
         backgroundColor: AppTheme.cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: const Text(
-          'Đổi tên playlist',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          context.l10n.editPlaylistTitle,
+          style: const TextStyle(color: Colors.white),
         ),
         content: TextField(
           controller: controller,
           autofocus: true,
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            hintText: 'Tên mới',
+            hintText: context.l10n.newNameHint,
             hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.4)),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
@@ -201,13 +202,13 @@ class PlaylistListScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy', style: TextStyle(color: Colors.white70)),
+            child: Text(context.l10n.cancelButton, style: const TextStyle(color: Colors.white70)),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text(
-              'Lưu',
-              style: TextStyle(
+            child: Text(
+              context.l10n.saveButton,
+              style: const TextStyle(
                 color: AppTheme.primaryColor,
                 fontWeight: FontWeight.bold,
               ),
@@ -230,12 +231,12 @@ class PlaylistListScreen extends StatelessWidget {
       builder: (context) => AlertDialog(
         backgroundColor: AppTheme.cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: const Text(
-          'Xóa playlist?',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          context.l10n.deletePlaylistTitle,
+          style: const TextStyle(color: Colors.white),
         ),
         content: Text(
-          'Playlist "${playlist.name}" sẽ bị xóa.',
+          context.l10n.deletePlaylistMessage(playlist.name),
           style: TextStyle(color: Colors.white.withValues(alpha: 0.75)),
         ),
         actions: [
@@ -246,7 +247,7 @@ class PlaylistListScreen extends StatelessWidget {
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             child: Text(
-              'Xóa',
+              context.l10n.deleteButton,
               style: TextStyle(
                 color: Colors.red.shade300,
                 fontWeight: FontWeight.bold,
@@ -290,7 +291,7 @@ class _PlaylistRow extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        '${playlist.songs.length} bài',
+        context.l10n.songsCount(playlist.songs.length),
         style: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
       ),
       trailing: PopupMenuButton<String>(
@@ -310,14 +311,14 @@ class _PlaylistRow extends StatelessWidget {
           }
         },
         itemBuilder: (context) => [
-          const PopupMenuItem(
+          PopupMenuItem(
             value: 'rename',
-            child: Text('Đổi tên', style: TextStyle(color: Colors.white)),
+            child: Text(context.l10n.renameLabel, style: const TextStyle(color: Colors.white)),
           ),
           PopupMenuItem(
             value: 'delete',
             child: Text(
-              'Xóa',
+              context.l10n.deleteButton,
               style: TextStyle(color: Colors.redAccent.shade100),
             ),
           ),

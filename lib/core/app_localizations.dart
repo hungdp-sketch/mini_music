@@ -27,6 +27,49 @@ class AppLocalizations {
       isEnglish ? 'Recently played' : 'Nghe gần đây';
   String get seeAllLabel => isEnglish ? 'See all' : 'Xem tất cả';
 
+  // Playlist Strings
+  String get playlistTitle => isEnglish ? 'Playlist' : 'Playlist';
+  String get playlistsTitle => isEnglish ? 'Playlists' : 'Playlists';
+  String get createPlaylistTitle =>
+      isEnglish ? 'Create playlist' : 'Tạo playlist';
+  String get editPlaylistTitle =>
+      isEnglish ? 'Edit playlist' : 'Đổi tên playlist';
+  String get deletePlaylistTitle =>
+      isEnglish ? 'Delete playlist?' : 'Xóa playlist?';
+  String get deletePlaylistConfirm =>
+      isEnglish ? 'Delete playlist' : 'Xóa playlist';
+  String deletePlaylistMessage(String name) => isEnglish
+      ? 'Playlist "$name" will be deleted.'
+      : 'Playlist "$name" sẽ bị xóa.';
+  String get noPlaylistsMessage =>
+      isEnglish ? 'No playlists yet.' : 'Chưa có playlist nào.';
+  String get playlistNameHint => isEnglish ? 'Playlist name' : 'Tên playlist';
+  String get newNameHint => isEnglish ? 'New name' : 'Tên mới';
+  String get createButton => isEnglish ? 'Create' : 'Tạo';
+  String get saveButton => isEnglish ? 'Save' : 'Lưu';
+  String get deleteButton => isEnglish ? 'Delete' : 'Xóa';
+  String songsCount(int count) => isEnglish ? '$count songs' : '$count bài';
+  String get renameLabel => isEnglish ? 'Rename' : 'Đổi tên';
+  String get addToPlaylistTitle =>
+      isEnglish ? 'Add to playlist' : 'Thêm vào playlist';
+  String get createNewPlaylistLabel =>
+      isEnglish ? 'Create new playlist' : 'Tạo playlist mới';
+  String get addedToPlaylistSnackBar =>
+      isEnglish ? 'Added to playlist.' : 'Đã thêm vào playlist.';
+  String playlistEmptyMessage(String name) => isEnglish
+      ? 'Playlist "$name" has no songs.'
+      : 'Playlist "$name" chưa có bài nào.';
+  String get editSongTitle => isEnglish ? 'Edit song' : 'Sửa bài';
+  String get songTitleHint => isEnglish ? 'Title' : 'Tiêu đề';
+  String get songChannelHint =>
+      isEnglish ? 'Channel (optional)' : 'Kênh (tuỳ chọn)';
+  String get editLabel => isEnglish ? 'Edit' : 'Sửa';
+  String get createNewLabel => isEnglish ? 'Create new' : 'Tạo mới';
+  String get searchNotFound =>
+      isEnglish ? 'No songs found.' : 'Không tìm thấy bài hát.';
+  String get musicPlayerError =>
+      isEnglish ? 'Music Player Error' : 'Lỗi phát nhạc';
+
   String get settingsTitle => isEnglish ? 'Settings' : 'Cài đặt';
   String get audioSettingsHeader =>
       isEnglish ? '🎵 Audio Settings' : '🎵 Cài đặt âm thanh';

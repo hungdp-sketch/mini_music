@@ -4,6 +4,7 @@ import '../../blocs/playlist/playlist_cubit.dart';
 import '../../blocs/playlist/playlist_state.dart';
 import '../../core/theme.dart';
 import '../../models/song_model.dart';
+import '../../core/app_localizations.dart';
 
 class AddToPlaylistSheet {
   static Future<void> show(
@@ -43,10 +44,10 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const Align(
+              Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Thêm vào playlist',
+                context.l10n.addToPlaylistTitle,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -68,7 +69,7 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.add_rounded, color: Colors.white70),
-              title: const Text('Tạo playlist mới', style: TextStyle(color: Colors.white)),
+              title: Text(context.l10n.createNewPlaylistLabel, style: const TextStyle(color: Colors.white)),
               onTap: () async {
                 final name = await _askPlaylistName(context);
                 if (name == null) return;
@@ -80,7 +81,7 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
                 if (id != null) {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Đã thêm vào playlist.')),
+                    SnackBar(content: Text(context.l10n.addedToPlaylistSnackBar)),
                   );
                 }
               },
@@ -97,7 +98,7 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Chưa có playlist nào.',
+                        context.l10n.noPlaylistsMessage,
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.55),
                         ),
@@ -127,7 +128,7 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
                           style: const TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
-                          '${p.songs.length} bài',
+                          context.l10n.songsCount(p.songs.length),
                           style: TextStyle(
                             color: Colors.white.withValues(alpha: 0.5),
                           ),
@@ -139,7 +140,7 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
                           if (!context.mounted) return;
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Đã thêm vào playlist.')),
+                            SnackBar(content: Text(context.l10n.addedToPlaylistSnackBar)),
                           );
                         },
                       );
@@ -161,13 +162,13 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
       builder: (context) => AlertDialog(
         backgroundColor: AppTheme.cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: const Text('Tạo playlist', style: TextStyle(color: Colors.white)),
+        title: Text(context.l10n.createPlaylistTitle, style: const TextStyle(color: Colors.white)),
         content: TextField(
           controller: controller,
           autofocus: true,
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            hintText: 'Tên playlist',
+            hintText: context.l10n.playlistNameHint,
             hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.4)),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.15)),
@@ -180,12 +181,12 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy', style: TextStyle(color: Colors.white70)),
+            child: Text(context.l10n.cancelButton, style: const TextStyle(color: Colors.white70)),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text(
-              'Tạo',
+            child: Text(
+              context.l10n.createButton,
               style: TextStyle(
                 color: AppTheme.primaryColor,
                 fontWeight: FontWeight.bold,
@@ -201,4 +202,3 @@ class _AddToPlaylistSheetBody extends StatelessWidget {
     return trimmed;
   }
 }
-
