@@ -45,7 +45,7 @@ class PlaylistDetailScreen extends StatelessWidget {
               child: Text(
                 context.l10n.deleteButton,
                 style: TextStyle(
-                  color: Colors.red.shade300,
+                  color: Colors.red.shade400,
                   fontWeight: FontWeight.bold,
                 ),
               ),
